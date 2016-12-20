@@ -4,8 +4,8 @@ The widget is can be loaded onto another site following the instructions down be
 
 # **Installation**
 The widget is dependent on a set up of the WebRTC platform. Even if you do not plan on using the full site, you need to set one up and have it active and running.
-This is because the widget will be loading content through the platform via iFrame. If you have some experience with iFrames and their uses, you can read more here: [http://www.w3schools.com/html/html_iframe.asp](W3 iFrame).
-If you don't have a WebRTC platform for you message360° account up and running, follow this link: [https://github.com/danielpark-ytel/message360-webrtc](WebRTC repository)
+This is because the widget will be loading content through the platform via iFrame. If you have some experience with iFrames and their uses, you can read more here: [iFrame W3Schools](http://www.w3schools.com/html/html_iframe.asp).
+If you don't have a WebRTC platform for you message360° account up and running, follow this link: [WebRTC Repository](https://github.com/danielpark-ytel/message360-webrtc)
 
 ### **Setup**
 ##### 1. Download the code for the widget
@@ -19,12 +19,7 @@ If you don't have a WebRTC platform for you message360° account up and running,
 2. You can place the `iframe` tag from the html file you downloaded onto an html file for your website:
 ```html
 <body>
-    <iframe id="wrtc-m360-iframe" src="https://webrtc-client-dev.message360.com/widget.html" scrolling="no"
-                frameborder="0" style="width:240px;
-                position: absolute;
-                bottom: 0;
-                right: 16px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></iframe>
+    <iframe id="wrtc-m360-iframe" src="https://webrtc-client-dev.message360.com/widget.html" scrolling="no" frameborder="0" style="width:240px;position: absolute;bottom: 0;right: 16px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></iframe>
 </body>
 ```
 
