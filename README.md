@@ -1,98 +1,71 @@
-<h1>WebRTC Widget Documentation</h1>
-<h2>Useful Information</h2>
-<p>This repository contains the source code and files for WebRTC widget implementation.
-The feature will enable a user to make outbound calls on an existing website or CRM platform using their Message360 account.
-Please read through this document for information on how to use and setting up this feature.</p>
+# **Overview**
+This repository holds the source code for the message360° WebRTC widget. The widget is an option for WebRTC users that do not want to utilize the full platform. 
+The widget is can be loaded onto another site following the instructions down below.
 
-<h2>Set up/Installation</h2>
-<h3>Files and dependencies</h3>
-<p>The <b>widget.js</b> file contains the javascript code which enables call functionality and generates the HTML widget.
-The widget will only work with the following javascript dependencies.</p>
-<ul>
-    <li>jQuery</li>
-    <li>jQuery-json</li>
-    <li>jQuery-verto</li>
-    <li>jQuery-FSRTC</li>
-    <li>jQuery-jsonrpcclient</li>
-</ul>
+# **Installation**
+The widget is dependent on a set up of the WebRTC platform. Even if you do not plan on using the full site, you need to set one up and have it active and running.
+This is because the widget will be loading content through the platform via iFrame. If you have some experience with iFrames and their uses, you can read more here: [http://www.w3schools.com/html/html_iframe.asp](W3 iFrame).
+If you don't have a WebRTC platform for you message360° account up and running, follow this link: [https://github.com/danielpark-ytel/message360-webrtc](WebRTC repository)
 
-<h3>Setting up</h3>
-<h4>Downloading and including files</h4>
-<p>Download this repository: <code>git clone https://gitlab.ytel.com/danielparkk/Message360-WRTC-Widget-Repository.git</code></p>
-<p>There is an HTML file in the folder by the name of <b>example.html</b> which shows the order in which the dependencies should be
-included in your own HTML document for your website/application.</p>
-<p>Once you've copied the folder and its contents and included the dependencies and the <b>widget.js</b> script in your application, 
-you will need to edit the main script file to work with your Message360 account.</p>
-<h4>Editing <b>widget.js</b></h4>
-<p>We need to edit the data configuration for this widget to work.
-In the <b>widget.js</b> file, look for the portion of the script that looks like this:</p>
+### **Setup**
+##### 1. Download the code for the widget
+1. Navigate to your desired install directory and perform a `git clone git@gitlab.ytel.com:danielparkk/message360-widget.git`
 
-<code>//Data configuration
-var data = {
-    instance : null,
-    connected : false,
-    accessToken : null,
-    tokenUrl : "",
-    numberUrl : "",
-    call : null,
-    callState : null,
-    canVideo : null,
-    videoDevices : [],
-    audioDevices : [],
-    shareDevices : [],
-    speakerDevices : [],
-    selectedShare : null,
-    selectedVideo : null,
-    selectedAudio : null,
-    selectedSpeaker : null,
-    callerName : null,
-    mutedMic : null,
-    onHold : null,
-    callerNum : null,
-    hostname : "message360.com",
-    wsUrl : "wss://id953la.message360.com:8082"
-};</code>
+2. This will download the source code into a folder containing an `index.html` and a javascript file `iframeResizer.min.js`.
 
-<p>The properties we're interested in are the <code>tokenUrl</code> and the <code>numberUrl</code>.
-The url's should be the location of the helper library files for WebRTC.</p>
-<p>For example, <code>tokenUrl</code> should be the url with the location of the helper library script that generates an accessToken for
-WebRTC usage on your web server. Accordingly, <code>numberUrl</code> should be the location of the script that authenticates a phone number for WebRTC use.</p>
+##### 2. Implementation on a website.
+1. The `index.html` file gives a pretty clear example of how the widget can be implemented into another site.
 
-<b>Here's an example of how a configured script's data variable should look:</b>
+2. You can place the `iframe` tag from the html file you downloaded onto an html file for your website:
+```html
+<body>
+    <iframe id="wrtc-m360-iframe" src="https://webrtc-client-dev.message360.com/widget.html" scrolling="no"
+                frameborder="0" style="width:240px;
+                position: absolute;
+                bottom: 0;
+                right: 16px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></iframe>
+</body>
+```
 
-<code>//Data configuration
-var data = {
-    instance : null,
-    connected : false,
-    accessToken : null,
-    tokenUrl : "https://yourdomain.com/accessToken.php",
-    numberUrl : "https://yourdomain.com/authenticateNumber.php",
-    call : null,
-    callState : null,
-    canVideo : null,
-    videoDevices : [],
-    audioDevices : [],
-    shareDevices : [],
-    speakerDevices : [],
-    selectedShare : null,
-    selectedVideo : null,
-    selectedAudio : null,
-    selectedSpeaker : null,
-    callerName : null,
-    mutedMic : null,
-    onHold : null,
-    callerNum : null,
-    hostname : "message360.com",
-    wsUrl : "wss://id953la.message360.com:8082"
-};</code>
+3. You also need to load the script into the head of your html file:
+```html
+<head>
+    <script type='text/javascript' src='/path/to/iframeResizer.min.js'></script>
+</head>
+```
 
-<p><i>IMPORTANT: </i> It's important to note that that due to browser restrictions and CORS issues, the helper library scripts should be 
-hosted in the same application folder as the one you are implementing the widget and not on a different server.</p>
+4. Finally you need to write a very small line of javascript code to enable the resizing of the widget.
+```html
+<body>
+    <!--Site Content-->
+    <script type='text/javascript'>
+        iframeResize();
+    </script>
+</body>
+```
 
-<p>After the data variable is configured, the widget should be ready for use.</p>
+5. After you do all these parts, your HTML page should look something like this.
+```html
+<html>
+    <head>
+        <script type='text/javascript' src='path/to/iframeResizer.min.js'></script>
+    </head>
+    <body>
+        <iframe id="wrtc-m360-iframe" src="https://webrtc-client-dev.message360.com/widget.html" scrolling="no"
+                frameborder="0" style="width:240px;
+                position: absolute;
+                bottom: 0;
+                right: 16px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"></iframe>
+        <script type='text/javascript'>
+            iframeResize();
+        </script>
+    </body>
+</html>
+```
+This will look a little different depending on the content on your site, but you can use this as a general skeleton/outline.
 
-<h2>Usage</h2>
-<p>Using the widget is pretty simple. Once the script loads on the browser, you will see a login form on the bottom right of your browser window.
-Just login using a name and enter a number that is owned by your Message360 account, <b>make sure it's voice-enabled and active</b>. Once you're logged in,
-you can enter a 10-digit US number and make a call. 
-
+### **Usage**
+As stated before, the widget is content from the WebRTC platform loaded via iFrame.
+You just need to enter a username and caller ID number (Verified on the message360° account that was configured with the platform.) into the widget an proceed to use the dialpad to make calls.
