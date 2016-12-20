@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Widget Test</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="iframeResizer.min.js"></script>
+        <style>
+            iframe {
+                width:240px;
+                position: absolute;
+                bottom: 0;
+                right: 16px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>
+            Mock CRM
+        </h1>
+        <h4>The widget can be placed and loaded via iframe.</h4>
+        <!-- IFRAME -->
+        <iframe id="wrtc-m360-iframe" src="https://webrtc-client-dev.message360.com/widget.html" scrolling="no"
+                frameborder="0"></iframe>
+        <!-- IFRAME RESIZER -->
+        <script type="text/javascript">
+            iFrameResize();
+        </script>
+    </body>
+</html>
